@@ -1,0 +1,112 @@
+{
+  "summary": {
+    "total_students": 500,
+    "mean_study_hours": 19.06,
+    "mean_sleep_hours": 6.9,
+    "mean_attendance": 79.36,
+    "mean_social_media_hours": 3.21,
+    "mean_exam_score": 87.12,
+    "literacy_distribution": {
+      "Advanced Literacy": 304,
+      "Proficient Literacy": 183,
+      "Basic Literacy": 13
+    }
+  },
+  "correlations": {
+    "study_hours_per_week": {
+      "study_hours_per_week": 1.0,
+      "sleep_hours_per_day": 0.0562,
+      "attendance_percentage": 0.0323,
+      "social_media_hours_per_day": -0.0301,
+      "academic_exam_score": 0.697
+    },
+    "sleep_hours_per_day": {
+      "study_hours_per_week": 0.0562,
+      "sleep_hours_per_day": 1.0,
+      "attendance_percentage": 0.0886,
+      "social_media_hours_per_day": -0.0008,
+      "academic_exam_score": 0.2335
+    },
+    "attendance_percentage": {
+      "study_hours_per_week": 0.0323,
+      "sleep_hours_per_day": 0.0886,
+      "attendance_percentage": 1.0,
+      "social_media_hours_per_day": -0.0331,
+      "academic_exam_score": 0.3067
+    },
+    "social_media_hours_per_day": {
+      "study_hours_per_week": -0.0301,
+      "sleep_hours_per_day": -0.0008,
+      "attendance_percentage": -0.0331,
+      "social_media_hours_per_day": 1.0,
+      "academic_exam_score": -0.3255
+    },
+    "academic_exam_score": {
+      "study_hours_per_week": 0.697,
+      "sleep_hours_per_day": 0.2335,
+      "attendance_percentage": 0.3067,
+      "social_media_hours_per_day": -0.3255,
+      "academic_exam_score": 1.0
+    }
+  },
+  "models": {
+    "linear_regression": {
+      "r2_score": 0.8125,
+      "rmse": 4.578,
+      "mae": 3.636,
+      "coefficients": {
+        "study_hours_per_week": 0.967,
+        "sleep_hours_per_day": 1.237,
+        "attendance_percentage": 0.228,
+        "social_media_hours_per_day": -1.975,
+        "tutoring_encoded": 3.58,
+        "parental_edu_encoded": 2.366
+      },
+      "intercept": 40.362
+    },
+    "random_forest": {
+      "r2_score": 0.7386,
+      "rmse": 5.404,
+      "mae": 4.136,
+      "feature_importance": [
+        {
+          "feature": "study_hours_per_week",
+          "importance": 0.5575
+        },
+        {
+          "feature": "attendance_percentage",
+          "importance": 0.1386
+        },
+        {
+          "feature": "social_media_hours_per_day",
+          "importance": 0.1378
+        },
+        {
+          "feature": "sleep_hours_per_day",
+          "importance": 0.0796
+        },
+        {
+          "feature": "parental_edu_encoded",
+          "importance": 0.0627
+        },
+        {
+          "feature": "tutoring_encoded",
+          "importance": 0.0239
+        }
+      ]
+    }
+  },
+  "group_analysis": {
+    "parental_education_mean_score": {
+      "Associate/Junior College": 86.96,
+      "Bachelor's Degree": 87.9,
+      "Doctorate": 93.32,
+      "High School": 82.96,
+      "Master's Degree": 89.83
+    },
+    "tutoring_mean_score": {
+      "No": 84.9,
+      "Yes": 88.89
+    }
+  }
+}

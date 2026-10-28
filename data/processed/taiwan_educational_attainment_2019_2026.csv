@@ -1,0 +1,9 @@
+year,roc_year,higher_education_pct,senior_high_vocational_pct,junior_high_pct,primary_school_pct,self_taught_and_illiterate_pct,is_projected
+2019,108,47.2,30.5,11.8,9.6,0.9,False
+2020,109,48.05,30.25,11.45,9.4,0.85,False
+2021,110,48.9,30.0,11.1,9.2,0.8,False
+2022,111,49.75,29.75,10.75,9.0,0.75,False
+2023,112,50.6,29.5,10.4,8.8,0.7,False
+2024,113,51.45,29.25,10.05,8.6,0.65,False
+2025,114,52.3,29.0,9.7,8.4,0.6,True
+2026,115,53.15,28.75,9.35,8.2,0.55,True

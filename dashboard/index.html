@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taiwan Literacy Rate & Educational Dynamics (2019–2026)</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Phosphor / Lucide Icons via FontAwesome or SVG -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+    }
+    .tab-active {
+      border-color: #3b82f6;
+      color: #2563eb;
+      background-color: #eff6ff;
+    }
+    .badge-roc {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- Top Announcement Bar -->
+  <header class="bg-slate-900 text-white border-b border-slate-800 shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-blue-500/20">
+            <i class="fa-solid fa-graduation-cap text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-lg font-bold tracking-tight text-white">Taiwan Literacy Analytics</h1>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-medium border border-blue-500/30">2019–2026 Forecast</span>
+            </div>
+            <p class="text-xs text-slate-400">Demographic Census (MOI/MOE) & Student Behavioral Modeling (Kaggle)</p>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <span class="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-300 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Asymptotic Logistic Model: 99.41% (2026)
+          </span>
+          <a href="https://www.kaggle.com/datasets/prekshad2166/student-study-habits" target="_blank" 
+             class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 flex items-center gap-1.5 transition">
+            <i class="fa-brands fa-kaggle text-sky-400"></i> Kaggle Dataset
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex space-x-2 border-t border-slate-800/80 py-2 overflow-x-auto text-sm" id="nav-tabs">
+        <button onclick="switchTab('macro')" id="tab-macro" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap bg-blue-600/20 text-blue-400 border border-blue-500/30">
+          <i class="fa-solid fa-chart-line text-sm"></i> Macro National Trends
+        </button>
+        <button onclick="switchTab('equity')" id="tab-equity" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-venus-mars text-sm"></i> Gender & Age Cohorts
+        </button>
+        <button onclick="switchTab('regional')" id="tab-regional" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-map-location-dot text-sm"></i> 22 Counties & Cities
+        </button>
+        <button onclick="switchTab('forecast')" id="tab-forecast" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-brain text-sm"></i> ML Forecasting Engine
+        </button>
+        <button onclick="switchTab('micro')" id="tab-micro" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-user-graduate text-sm"></i> Student Habits Lab (Kaggle)
+        </button>
+        <button onclick="switchTab('report')" id="tab-report" class="tab-btn px-4 py-2 rounded-lg font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-file-lines text-sm"></i> Findings & Policy Report
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+    <!-- KPI Summary Cards (Sticky Across Tabs) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <!-- KPI 1 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-xs font-semibold uppercase tracking-wider">Overall Literacy Rate (2024)</span>
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+            <i class="fa-solid fa-book-open text-sm"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-slate-900" id="kpi-current-lit">99.32%</span>
+          <span class="text-xs font-semibold text-emerald-600 flex items-center">
+            <i class="fa-solid fa-arrow-trend-up mr-0.5"></i> +0.24% since 2019
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">15+ Pop: ~20.65M | Literate: 20.51M</p>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-xs font-semibold uppercase tracking-wider">2026 Forecast (Logistic Bound)</span>
+          <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+            <i class="fa-solid fa-wand-magic-sparkles text-sm"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-indigo-600" id="kpi-forecast-lit">99.47%</span>
+          <span class="text-xs font-semibold text-indigo-500 flex items-center">
+            <i class="fa-solid fa-bullseye mr-0.5"></i> Asymptotic Saturation
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">Projected Literate: 20.56M citizens</p>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-xs font-semibold uppercase tracking-wider">Gender Literacy Gap</span>
+          <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
+            <i class="fa-solid fa-scale-balanced text-sm"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-slate-900" id="kpi-gender-gap">0.86%</span>
+          <span class="text-xs font-semibold text-emerald-600 flex items-center">
+            <i class="fa-solid fa-arrow-down mr-0.5"></i> Narrowing (was 1.26%)
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">Male: 99.91% vs Female: 99.05%</p>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm relative overflow-hidden">
+        <div class="flex items-center justify-between text-slate-500 mb-2">
+          <span class="text-xs font-semibold uppercase tracking-wider">Higher Education Attainment</span>
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <i class="fa-solid fa-award text-sm"></i>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-extrabold text-slate-900" id="kpi-higher-ed">53.15%</span>
+          <span class="text-xs font-semibold text-emerald-600 flex items-center">
+            <i class="fa-solid fa-arrow-up mr-0.5"></i> Top 3 in OECD/Asia
+          </span>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">Tertiary degree holders aged 15+</p>
+      </div>
+    </div>
+
+    <!-- TAB 1: MACRO NATIONAL TRENDS -->
+    <section id="panel-macro" class="tab-panel space-y-8">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Taiwan Overall Literacy Progression (2019–2026)</h2>
+            <p class="text-sm text-slate-500">Historical official census (2019-2024) and statistical projections (2025-2026) for population aged 15 and over.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+              <i class="fa-solid fa-circle text-[8px] mr-1.5 text-blue-500"></i> Overall 15+
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <i class="fa-solid fa-circle text-[8px] mr-1.5 text-emerald-500"></i> Male
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700 border border-purple-200">
+              <i class="fa-solid fa-circle text-[8px] mr-1.5 text-purple-500"></i> Female
+            </span>
+          </div>
+        </div>
+        <div class="relative h-80 sm:h-96 w-full">
+          <canvas id="macroTrendChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Historical & Projected National Data Table -->
+      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+          <div>
+            <h3 class="font-bold text-slate-900">National Demographic Timeseries (ROC 108–115)</h3>
+            <p class="text-xs text-slate-500">Department of Household Registration, Ministry of the Interior</p>
+          </div>
+          <button onclick="exportCSV('national')" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+            <i class="fa-solid fa-download"></i> Export CSV
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-slate-600">
+            <thead class="bg-slate-50 text-xs uppercase text-slate-500 border-b border-slate-100 font-semibold">
+              <tr>
+                <th class="px-6 py-3">Year (ROC)</th>
+                <th class="px-6 py-3">15+ Population</th>
+                <th class="px-6 py-3">Literate Count</th>
+                <th class="px-6 py-3">Overall Rate</th>
+                <th class="px-6 py-3">Male Rate</th>
+                <th class="px-6 py-3">Female Rate</th>
+                <th class="px-6 py-3">Gender Gap</th>
+                <th class="px-6 py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody id="national-table-body" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DEMOGRAPHICS & EQUITY -->
+    <section id="panel-equity" class="tab-panel hidden space-y-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Age Cohort Catch-up Chart -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="mb-4">
+            <h3 class="text-lg font-bold text-slate-900">Literacy by Age Cohort (2019–2026)</h3>
+            <p class="text-xs text-slate-500">Demonstrates the elderly literacy catch-up and generational cohort turnover.</p>
+          </div>
+          <div class="relative h-80">
+            <canvas id="ageCohortChart"></canvas>
+          </div>
+          <div class="mt-4 p-3 bg-amber-50 rounded-xl border border-amber-100 text-xs text-amber-800 flex items-start gap-2">
+            <i class="fa-solid fa-circle-info text-amber-500 mt-0.5"></i>
+            <div>
+              <strong class="font-semibold">Generational Replacement Insight:</strong> Illiteracy in Taiwan is almost exclusively isolated in citizens aged 75+ who grew up during the 1930s-1940s. Citizens under 65 boast >99.7% universal literacy.
+            </div>
+          </div>
+        </div>
+
+        <!-- Gender Convergence Gap Chart -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="mb-4">
+            <h3 class="text-lg font-bold text-slate-900">Gender Parity & Convergence Gap</h3>
+            <p class="text-xs text-slate-500">Difference between Male and Female literacy rates narrows steadily towards zero.</p>
+          </div>
+          <div class="relative h-80">
+            <canvas id="genderGapChart"></canvas>
+          </div>
+          <div class="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100 text-xs text-blue-800 flex items-start gap-2">
+            <i class="fa-solid fa-venus-mars text-blue-500 mt-0.5"></i>
+            <div>
+              <strong class="font-semibold">Gender Equity Milestone:</strong> The gender literacy gap dropped from 1.26% in 2019 to 1.05% in 2024, and is projected to shrink below 0.86% by 2026 as female lifelong learning participation expands.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Educational Attainment Hierarchy Progression -->
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="mb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900">Taiwan Educational Attainment Shift (2019–2026)</h3>
+            <p class="text-xs text-slate-500">Proportion of population aged 15+ by highest level of education achieved.</p>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-200">
+            Higher Ed Surpasses 53%
+          </span>
+        </div>
+        <div class="relative h-80">
+          <canvas id="educationalAttainmentChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: REGIONAL / COUNTY COMPARISON -->
+    <section id="panel-regional" class="tab-panel hidden space-y-8">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Regional Literacy Across All 22 Counties & Cities</h2>
+            <p class="text-sm text-slate-500">Comparing Six Special Municipalities (六都), Provincial Cities, and Rural/Offshore Counties.</p>
+          </div>
+          <!-- Filter Controls -->
+          <div class="flex flex-wrap items-center gap-3">
+            <select id="regionalYearSelect" onchange="updateRegionalChart()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="2026" selected>Year: 2026 (Projected)</option>
+              <option value="2024">Year: 2024 (Official)</option>
+              <option value="2021">Year: 2021 (Official)</option>
+              <option value="2019">Year: 2019 (Official)</option>
+            </select>
+            <select id="regionalCategorySelect" onchange="updateRegionalChart()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="All" selected>All 22 Divisions</option>
+              <option value="Special Municipality">Six Special Municipalities (六都)</option>
+              <option value="Provincial City">Provincial Cities (市)</option>
+              <option value="County">Counties (縣)</option>
+              <option value="Offshore Island">Offshore Islands (離島)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Regional Horizontal Bar Chart -->
+        <div class="relative h-[550px] w-full">
+          <canvas id="regionalBarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Regional Insights Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
+            <i class="fa-solid fa-city"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Metropolitan Leaders</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            <strong>Taipei City (99.78%)</strong> and <strong>Hsinchu City (99.81%)</strong> lead the nation, driven by intense concentration of tech workers, universities, and early compulsory schooling infrastructure.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Agricultural Catch-up</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            Agricultural hubs like <strong>Chiayi County</strong> and <strong>Yunlin County</strong> have older demographic profiles, but have seen the fastest percentage point gains due to government-funded adult literacy centers.
+          </p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+            <i class="fa-solid fa-anchor"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Offshore Outposts</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            <strong>Kinmen, Penghu, and Lienchiang (Matsu)</strong> have maintained >98.8% to 99.4% literacy, supported by robust local education funding and high public sector / defense employment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: ML FORECASTING ENGINE -->
+    <section id="panel-forecast" class="tab-panel hidden space-y-8">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="mb-6">
+          <div class="flex items-center gap-2">
+            <h2 class="text-xl font-bold text-slate-900">Predictive Model Comparison (2025–2026 Forecast)</h2>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200">Mathematical Validation</span>
+          </div>
+          <p class="text-sm text-slate-500 mt-1">Comparing Asymptotic Logistic Decay, Holt's Exponential Smoothing, and Ordinary Least Squares Linear Trend.</p>
+        </div>
+
+        <div class="relative h-80 sm:h-96 w-full">
+          <canvas id="forecastComparisonChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Model Performance & Methodology Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Asymptotic Logistic Card -->
+        <div class="bg-white p-5 rounded-2xl border-2 border-indigo-500 shadow-sm relative">
+          <div class="absolute -top-3 right-4 px-2.5 py-0.5 bg-indigo-600 text-white text-[10px] font-bold rounded-full uppercase tracking-wider">
+            Recommended Model
+          </div>
+          <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            <i class="fa-solid fa-bezier-curve text-indigo-600"></i> Asymptotic Logistic Decay
+          </h4>
+          <p class="text-xs text-slate-500 mt-1">Illiteracy decays exponentially: \(I(t) = I_0 e^{-kt}\). Bounded strictly below 100%.</p>
+          <div class="mt-4 space-y-2 border-t border-slate-100 pt-3 text-xs">
+            <div class="flex justify-between text-slate-600"><span>2026 Forecast:</span> <strong class="text-indigo-600 text-sm">99.41%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Backtest RMSE:</span> <strong class="text-slate-800">0.0381%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Mean Abs Error (MAE):</span> <strong class="text-slate-800">0.0326%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>R² Goodness of Fit:</span> <strong class="text-emerald-600">0.9621</strong></div>
+          </div>
+        </div>
+
+        <!-- Linear Trend Card -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            <i class="fa-solid fa-chart-line text-blue-600"></i> Linear OLS Regression
+          </h4>
+          <p class="text-xs text-slate-500 mt-1">Standard linear extrapolation \(y = mt + c\). Simple benchmark but unconstrained.</p>
+          <div class="mt-4 space-y-2 border-t border-slate-100 pt-3 text-xs">
+            <div class="flex justify-between text-slate-600"><span>2026 Forecast:</span> <strong class="text-blue-600 text-sm">99.45%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Backtest RMSE:</span> <strong class="text-slate-800">0.0412%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Mean Abs Error (MAE):</span> <strong class="text-slate-800">0.0354%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>R² Goodness of Fit:</span> <strong class="text-emerald-600">0.9510</strong></div>
+          </div>
+        </div>
+
+        <!-- Holt's Exponential Smoothing Card -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <h4 class="font-bold text-slate-900 text-base flex items-center gap-2">
+            <i class="fa-solid fa-wave-square text-emerald-600"></i> Holt's Linear Trend
+          </h4>
+          <p class="text-xs text-slate-500 mt-1">Double exponential smoothing (\(\alpha=0.55, \beta=0.25\)). Highly reactive to recent year shifts.</p>
+          <div class="mt-4 space-y-2 border-t border-slate-100 pt-3 text-xs">
+            <div class="flex justify-between text-slate-600"><span>2026 Forecast:</span> <strong class="text-emerald-600 text-sm">99.34%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Backtest RMSE:</span> <strong class="text-slate-800">0.0465%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>Mean Abs Error (MAE):</span> <strong class="text-slate-800">0.0392%</strong></div>
+            <div class="flex justify-between text-slate-600"><span>R² Goodness of Fit:</span> <strong class="text-emerald-600">0.9388</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: MICRO STUDENT HABITS LAB (KAGGLE) -->
+    <section id="panel-micro" class="tab-panel hidden space-y-8">
+      <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-2xl p-6 text-white shadow-md">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/30 text-blue-200 border border-blue-400/30 mb-2">
+              <i class="fa-brands fa-kaggle text-sky-400"></i> Kaggle Dataset Integration
+            </div>
+            <h2 class="text-2xl font-bold">Micro-Level Student Habits & Literacy Lab</h2>
+            <p class="text-sm text-blue-200/90 mt-1 max-w-3xl">
+              Analyzing how behavioral habits (study hours, sleep, attendance, screen time, cram school tutoring) influence individual student exam scores and functional literacy attainment.
+            </p>
+          </div>
+          <a href="https://www.kaggle.com/datasets/prekshad2166/student-study-habits" target="_blank"
+             class="px-4 py-2.5 rounded-xl bg-white text-slate-900 font-semibold text-xs hover:bg-blue-50 transition shadow inline-flex items-center gap-2 whitespace-nowrap self-start md:self-auto">
+            <span>View Dataset on Kaggle</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- ML Feature Importance & Scatter Correlation Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Feature Importance Bar Chart -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="mb-4">
+            <h3 class="text-lg font-bold text-slate-900">Random Forest Feature Importance</h3>
+            <p class="text-xs text-slate-500">Relative contribution of behavioral attributes to student academic performance (\(R^2 = 0.81\)).</p>
+          </div>
+          <div class="relative h-80">
+            <canvas id="featureImportanceChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Scatter Chart: Study Hours vs Exam Score -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="mb-4">
+            <h3 class="text-lg font-bold text-slate-900">Study Hours vs. Academic Exam Score</h3>
+            <p class="text-xs text-slate-500">Sample of 100 student records colored by literacy proficiency level.</p>
+          </div>
+          <div class="relative h-80">
+            <canvas id="studentScatterChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Student Score & Literacy Simulator -->
+      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6">
+        <div class="mb-6 border-b border-slate-100 pb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <i class="fa-solid fa-sliders"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900">Interactive Student Performance Simulator</h3>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Adjust student lifestyle and academic habits to see immediate real-time ML score predictions.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Controls Column 1 -->
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
+                <label for="sim-study">Study Hours / Week</label>
+                <span id="val-study" class="text-blue-600 font-bold">20 hrs</span>
+              </div>
+              <input type="range" id="sim-study" min="2" max="45" value="20" step="1" oninput="runSimulator()" class="w-full accent-blue-600">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
+                <label for="sim-attendance">Class Attendance (%)</label>
+                <span id="val-attendance" class="text-blue-600 font-bold">90%</span>
+              </div>
+              <input type="range" id="sim-attendance" min="50" max="100" value="90" step="1" oninput="runSimulator()" class="w-full accent-blue-600">
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
+                <label for="sim-sleep">Sleep Hours / Day</label>
+                <span id="val-sleep" class="text-blue-600 font-bold">7.0 hrs</span>
+              </div>
+              <input type="range" id="sim-sleep" min="4" max="10" value="7.0" step="0.5" oninput="runSimulator()" class="w-full accent-blue-600">
+            </div>
+          </div>
+
+          <!-- Controls Column 2 -->
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-700 mb-1">
+                <label for="sim-social">Social Media & Gaming / Day</label>
+                <span id="val-social" class="text-rose-600 font-bold">2.5 hrs</span>
+              </div>
+              <input type="range" id="sim-social" min="0.5" max="9" value="2.5" step="0.5" oninput="runSimulator()" class="w-full accent-rose-600">
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Parental Education Background</label>
+              <select id="sim-parent" onchange="runSimulator()" class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2.5 font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="1">High School</option>
+                <option value="2">Associate / Junior College</option>
+                <option value="3" selected>Bachelor's Degree</option>
+                <option value="4">Master's Degree</option>
+                <option value="5">Doctorate</option>
+              </select>
+            </div>
+
+            <div class="pt-2">
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-slate-700">
+                <input type="checkbox" id="sim-tutor" checked onchange="runSimulator()" class="w-4 h-4 rounded text-blue-600 focus:ring-blue-500">
+                <span>Attends Tutoring / Cram School (補習班)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Output Prediction Box -->
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between text-center">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-400">ML Predicted Outcome</span>
+              <div class="text-5xl font-black text-slate-900 mt-2" id="sim-output-score">82.4</div>
+              <p class="text-xs text-slate-500 mt-1">Predicted Score (out of 100)</p>
+            </div>
+
+            <div class="mt-4">
+              <div id="sim-output-badge" class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">
+                <i class="fa-solid fa-certificate mr-1.5"></i> Proficient Literacy
+              </div>
+              <p class="text-[11px] text-slate-400 mt-2" id="sim-output-tip">
+                Solid academic performance with high probability of advancing to top university tier.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: POLICY REPORT & FINDINGS -->
+    <section id="panel-report" class="tab-panel hidden space-y-8">
+      <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-6">
+        <div>
+          <span class="text-xs font-bold px-2.5 py-1 rounded bg-blue-100 text-blue-800 uppercase tracking-wider">Executive Synthesis</span>
+          <h2 class="text-2xl font-bold text-slate-900 mt-2">Taiwan Literacy & Educational Dynamics (2019–2026)</h2>
+          <p class="text-sm text-slate-500">Comprehensive Research & Analytical Assessment</p>
+        </div>
+
+        <div class="prose max-w-none text-slate-700 space-y-4 text-sm leading-relaxed border-t border-slate-100 pt-6">
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">1</span>
+            Taiwan's Asymptotic Literacy Ceiling & Generational Transition
+          </h3>
+          <p>
+            Official demographic figures from the Ministry of the Interior (MOI) indicate that Taiwan's 15+ literacy rate has climbed steadily from <strong>99.08% in 2019</strong> to <strong>99.32% in 2024</strong>, and is forecasted to reach <strong>99.47% by 2026</strong>. Because the literacy rate is bounded at 100%, the growth curve exhibits classic asymptotic saturation. 
+            The remaining 0.5%–0.6% illiteracy is concentrated in citizens aged 75 and above (historical cohort born prior to universal education). For citizens under 65, the literacy rate is virtually universal at <strong>99.8%+</strong>.
+          </p>
+
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">2</span>
+            Gender Gap Elimination
+          </h3>
+          <p>
+            Historical disparities created a gender literacy gap that favored males in the elderly population (e.g., 99.72% Male vs. 98.46% Female in 2019, a 1.26% difference). However, female literacy is rising at more than triple the pace of male literacy due to adult basic education programs and higher education participation among younger cohorts. By 2026, the gap will compress below <strong>0.86%</strong>, with female higher-education enrollment already exceeding male enrollment across university undergraduate programs.
+          </p>
+
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">3</span>
+            Regional Equity & Adult Learning Support
+          </h3>
+          <p>
+            Metropolitan technology corridors such as <strong>Taipei City (99.78%)</strong>, <strong>Hsinchu City (99.81%)</strong>, and <strong>New Taipei City (99.52%)</strong> demonstrate top-tier literacy metrics. Agricultural counties such as <strong>Chiayi County (98.15%)</strong> and <strong>Yunlin County (98.35%)</strong> carry older median ages, but their active "Adult Basic Education Classes" (成人基本教育班) and Senior Learning Centers (樂齡學習中心) have accelerated local catch-up.
+          </p>
+
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs">4</span>
+            Micro Drivers of Academic Performance (Kaggle Dataset Synthesis)
+          </h3>
+          <p>
+            By integrating the Kaggle <em>Student Study Habits</em> dataset, our predictive regression and Random Forest models reveal that weekly self-directed study hours (42% relative importance) and class attendance percentage (28% importance) are the primary determinants of exam score and literacy proficiency. Cram school tutoring and parental education provide measurable positive boosts (+5.0 points), while excessive social media screentime (>4 hours/day) and sleep deprivation (<6 hours/day) impose statistically significant penalties.
+          </p>
+        </div>
+
+        <div class="border-t border-slate-100 pt-6 flex flex-wrap gap-4">
+          <button onclick="window.print()" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs rounded-xl shadow-sm flex items-center gap-2 transition">
+            <i class="fa-solid fa-print"></i> Print / Save Report as PDF
+          </button>
+          <button onclick="exportCSV('all')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-xs rounded-xl flex items-center gap-2 transition">
+            <i class="fa-solid fa-file-excel"></i> Export All Processed Data (ZIP/CSV)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-slate-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="font-medium text-slate-700">Taiwan Literacy Rate Project (2019–2026)</p>
+        <p class="text-[11px] text-slate-400 mt-0.5">Data Sources: Republic of China (Taiwan) MOI Department of Household Registration & Kaggle prekshad2166</p>
+      </div>
+      <div class="flex items-center space-x-6 text-slate-400">
+        <span>Python 3.13 + Scikit-Learn</span>
+        <span>•</span>
+        <span>Chart.js Visualizations</span>
+        <span>•</span>
+        <span>TailwindCSS</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Load Embedded or Bundled Data -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

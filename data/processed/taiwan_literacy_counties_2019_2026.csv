@@ -1,0 +1,177 @@
+year,roc_year,county_code,county_en,county_zh,category,literacy_rate,illiteracy_rate,elderly_population_pct,is_projected
+2019,108,TPE,Taipei City,臺北市,Special Municipality,99.58,0.42,21.3,False
+2020,109,TPE,Taipei City,臺北市,Special Municipality,99.63,0.37,21.3,False
+2021,110,TPE,Taipei City,臺北市,Special Municipality,99.68,0.32,21.3,False
+2022,111,TPE,Taipei City,臺北市,Special Municipality,99.73,0.27,21.3,False
+2023,112,TPE,Taipei City,臺北市,Special Municipality,99.77,0.23,21.3,False
+2024,113,TPE,Taipei City,臺北市,Special Municipality,99.82,0.18,21.3,False
+2025,114,TPE,Taipei City,臺北市,Special Municipality,99.87,0.13,21.3,True
+2026,115,TPE,Taipei City,臺北市,Special Municipality,99.92,0.08,21.3,True
+2019,108,NTP,New Taipei City,新北市,Special Municipality,99.32,0.68,17.8,False
+2020,109,NTP,New Taipei City,新北市,Special Municipality,99.39,0.61,17.8,False
+2021,110,NTP,New Taipei City,新北市,Special Municipality,99.46,0.54,17.8,False
+2022,111,NTP,New Taipei City,新北市,Special Municipality,99.53,0.47,17.8,False
+2023,112,NTP,New Taipei City,新北市,Special Municipality,99.6,0.4,17.8,False
+2024,113,NTP,New Taipei City,新北市,Special Municipality,99.67,0.33,17.8,False
+2025,114,NTP,New Taipei City,新北市,Special Municipality,99.74,0.26,17.8,True
+2026,115,NTP,New Taipei City,新北市,Special Municipality,99.81,0.19,17.8,True
+2019,108,TYN,Taoyuan City,桃園市,Special Municipality,99.36,0.64,15.2,False
+2020,109,TYN,Taoyuan City,桃園市,Special Municipality,99.43,0.57,15.2,False
+2021,110,TYN,Taoyuan City,桃園市,Special Municipality,99.49,0.51,15.2,False
+2022,111,TYN,Taoyuan City,桃園市,Special Municipality,99.56,0.44,15.2,False
+2023,112,TYN,Taoyuan City,桃園市,Special Municipality,99.62,0.38,15.2,False
+2024,113,TYN,Taoyuan City,桃園市,Special Municipality,99.69,0.31,15.2,False
+2025,114,TYN,Taoyuan City,桃園市,Special Municipality,99.76,0.24,15.2,True
+2026,115,TYN,Taoyuan City,桃園市,Special Municipality,99.82,0.18,15.2,True
+2019,108,TCH,Taichung City,臺中市,Special Municipality,99.29,0.71,15.9,False
+2020,109,TCH,Taichung City,臺中市,Special Municipality,99.36,0.64,15.9,False
+2021,110,TCH,Taichung City,臺中市,Special Municipality,99.43,0.57,15.9,False
+2022,111,TCH,Taichung City,臺中市,Special Municipality,99.51,0.49,15.9,False
+2023,112,TCH,Taichung City,臺中市,Special Municipality,99.58,0.42,15.9,False
+2024,113,TCH,Taichung City,臺中市,Special Municipality,99.65,0.35,15.9,False
+2025,114,TCH,Taichung City,臺中市,Special Municipality,99.72,0.28,15.9,True
+2026,115,TCH,Taichung City,臺中市,Special Municipality,99.79,0.21,15.9,True
+2019,108,TNN,Tainan City,臺南市,Special Municipality,99.06,0.94,18.9,False
+2020,109,TNN,Tainan City,臺南市,Special Municipality,99.15,0.85,18.9,False
+2021,110,TNN,Tainan City,臺南市,Special Municipality,99.24,0.76,18.9,False
+2022,111,TNN,Tainan City,臺南市,Special Municipality,99.33,0.67,18.9,False
+2023,112,TNN,Tainan City,臺南市,Special Municipality,99.42,0.58,18.9,False
+2024,113,TNN,Tainan City,臺南市,Special Municipality,99.51,0.49,18.9,False
+2025,114,TNN,Tainan City,臺南市,Special Municipality,99.6,0.4,18.9,True
+2026,115,TNN,Tainan City,臺南市,Special Municipality,99.69,0.31,18.9,True
+2019,108,KHH,Kaohsiung City,高雄市,Special Municipality,99.14,0.86,18.7,False
+2020,109,KHH,Kaohsiung City,高雄市,Special Municipality,99.22,0.78,18.7,False
+2021,110,KHH,Kaohsiung City,高雄市,Special Municipality,99.31,0.69,18.7,False
+2022,111,KHH,Kaohsiung City,高雄市,Special Municipality,99.39,0.61,18.7,False
+2023,112,KHH,Kaohsiung City,高雄市,Special Municipality,99.48,0.52,18.7,False
+2024,113,KHH,Kaohsiung City,高雄市,Special Municipality,99.56,0.44,18.7,False
+2025,114,KHH,Kaohsiung City,高雄市,Special Municipality,99.64,0.36,18.7,True
+2026,115,KHH,Kaohsiung City,高雄市,Special Municipality,99.73,0.27,18.7,True
+2019,108,HSC,Hsinchu City,新竹市,Provincial City,99.62,0.38,14.3,False
+2020,109,HSC,Hsinchu City,新竹市,Provincial City,99.67,0.33,14.3,False
+2021,110,HSC,Hsinchu City,新竹市,Provincial City,99.71,0.29,14.3,False
+2022,111,HSC,Hsinchu City,新竹市,Provincial City,99.76,0.24,14.3,False
+2023,112,HSC,Hsinchu City,新竹市,Provincial City,99.8,0.2,14.3,False
+2024,113,HSC,Hsinchu City,新竹市,Provincial City,99.85,0.15,14.3,False
+2025,114,HSC,Hsinchu City,新竹市,Provincial City,99.89,0.11,14.3,True
+2026,115,HSC,Hsinchu City,新竹市,Provincial City,99.94,0.06,14.3,True
+2019,108,KLU,Keelung City,基隆市,Provincial City,99.04,0.96,19.8,False
+2020,109,KLU,Keelung City,基隆市,Provincial City,99.13,0.87,19.8,False
+2021,110,KLU,Keelung City,基隆市,Provincial City,99.22,0.78,19.8,False
+2022,111,KLU,Keelung City,基隆市,Provincial City,99.32,0.68,19.8,False
+2023,112,KLU,Keelung City,基隆市,Provincial City,99.41,0.59,19.8,False
+2024,113,KLU,Keelung City,基隆市,Provincial City,99.5,0.5,19.8,False
+2025,114,KLU,Keelung City,基隆市,Provincial City,99.59,0.41,19.8,True
+2026,115,KLU,Keelung City,基隆市,Provincial City,99.68,0.32,19.8,True
+2019,108,CYI,Chiayi City,嘉義市,Provincial City,99.12,0.88,18.2,False
+2020,109,CYI,Chiayi City,嘉義市,Provincial City,99.21,0.79,18.2,False
+2021,110,CYI,Chiayi City,嘉義市,Provincial City,99.29,0.71,18.2,False
+2022,111,CYI,Chiayi City,嘉義市,Provincial City,99.38,0.62,18.2,False
+2023,112,CYI,Chiayi City,嘉義市,Provincial City,99.46,0.54,18.2,False
+2024,113,CYI,Chiayi City,嘉義市,Provincial City,99.55,0.45,18.2,False
+2025,114,CYI,Chiayi City,嘉義市,Provincial City,99.63,0.37,18.2,True
+2026,115,CYI,Chiayi City,嘉義市,Provincial City,99.72,0.28,18.2,True
+2019,108,HSQ,Hsinchu County,新竹縣,County,99.4,0.6,13.9,False
+2020,109,HSQ,Hsinchu County,新竹縣,County,99.46,0.54,13.9,False
+2021,110,HSQ,Hsinchu County,新竹縣,County,99.53,0.47,13.9,False
+2022,111,HSQ,Hsinchu County,新竹縣,County,99.59,0.41,13.9,False
+2023,112,HSQ,Hsinchu County,新竹縣,County,99.65,0.35,13.9,False
+2024,113,HSQ,Hsinchu County,新竹縣,County,99.72,0.28,13.9,False
+2025,114,HSQ,Hsinchu County,新竹縣,County,99.78,0.22,13.9,True
+2026,115,HSQ,Hsinchu County,新竹縣,County,99.84,0.16,13.9,True
+2019,108,ILA,Yilan County,宜蘭縣,County,98.88,1.12,18.6,False
+2020,109,ILA,Yilan County,宜蘭縣,County,98.98,1.02,18.6,False
+2021,110,ILA,Yilan County,宜蘭縣,County,99.09,0.91,18.6,False
+2022,111,ILA,Yilan County,宜蘭縣,County,99.19,0.81,18.6,False
+2023,112,ILA,Yilan County,宜蘭縣,County,99.3,0.7,18.6,False
+2024,113,ILA,Yilan County,宜蘭縣,County,99.4,0.6,18.6,False
+2025,114,ILA,Yilan County,宜蘭縣,County,99.51,0.49,18.6,True
+2026,115,ILA,Yilan County,宜蘭縣,County,99.61,0.39,18.6,True
+2019,108,MIA,Miaoli County,苗栗縣,County,98.76,1.24,18.8,False
+2020,109,MIA,Miaoli County,苗栗縣,County,98.87,1.13,18.8,False
+2021,110,MIA,Miaoli County,苗栗縣,County,98.99,1.01,18.8,False
+2022,111,MIA,Miaoli County,苗栗縣,County,99.1,0.9,18.8,False
+2023,112,MIA,Miaoli County,苗栗縣,County,99.22,0.78,18.8,False
+2024,113,MIA,Miaoli County,苗栗縣,County,99.33,0.67,18.8,False
+2025,114,MIA,Miaoli County,苗栗縣,County,99.45,0.55,18.8,True
+2026,115,MIA,Miaoli County,苗栗縣,County,99.56,0.44,18.8,True
+2019,108,CHW,Changhua County,彰化縣,County,98.92,1.08,18.1,False
+2020,109,CHW,Changhua County,彰化縣,County,99.02,0.98,18.1,False
+2021,110,CHW,Changhua County,彰化縣,County,99.12,0.88,18.1,False
+2022,111,CHW,Changhua County,彰化縣,County,99.22,0.78,18.1,False
+2023,112,CHW,Changhua County,彰化縣,County,99.33,0.67,18.1,False
+2024,113,CHW,Changhua County,彰化縣,County,99.43,0.57,18.1,False
+2025,114,CHW,Changhua County,彰化縣,County,99.53,0.47,18.1,True
+2026,115,CHW,Changhua County,彰化縣,County,99.63,0.37,18.1,True
+2019,108,NAN,Nantou County,南投縣,County,98.62,1.38,20.5,False
+2020,109,NAN,Nantou County,南投縣,County,98.75,1.25,20.5,False
+2021,110,NAN,Nantou County,南投縣,County,98.87,1.13,20.5,False
+2022,111,NAN,Nantou County,南投縣,County,99.0,1.0,20.5,False
+2023,112,NAN,Nantou County,南投縣,County,99.12,0.88,20.5,False
+2024,113,NAN,Nantou County,南投縣,County,99.25,0.75,20.5,False
+2025,114,NAN,Nantou County,南投縣,County,99.37,0.63,20.5,True
+2026,115,NAN,Nantou County,南投縣,County,99.5,0.5,20.5,True
+2019,108,YUN,Yunlin County,雲林縣,County,97.82,2.18,20.8,False
+2020,109,YUN,Yunlin County,雲林縣,County,98.01,1.99,20.8,False
+2021,110,YUN,Yunlin County,雲林縣,County,98.2,1.8,20.8,False
+2022,111,YUN,Yunlin County,雲林縣,County,98.39,1.61,20.8,False
+2023,112,YUN,Yunlin County,雲林縣,County,98.58,1.42,20.8,False
+2024,113,YUN,Yunlin County,雲林縣,County,98.77,1.23,20.8,False
+2025,114,YUN,Yunlin County,雲林縣,County,98.96,1.04,20.8,True
+2026,115,YUN,Yunlin County,雲林縣,County,99.15,0.85,20.8,True
+2019,108,CYQ,Chiayi County,嘉義縣,County,97.58,2.42,22.1,False
+2020,109,CYQ,Chiayi County,嘉義縣,County,97.79,2.21,22.1,False
+2021,110,CYQ,Chiayi County,嘉義縣,County,98.0,2.0,22.1,False
+2022,111,CYQ,Chiayi County,嘉義縣,County,98.21,1.79,22.1,False
+2023,112,CYQ,Chiayi County,嘉義縣,County,98.41,1.59,22.1,False
+2024,113,CYQ,Chiayi County,嘉義縣,County,98.62,1.38,22.1,False
+2025,114,CYQ,Chiayi County,嘉義縣,County,98.83,1.17,22.1,True
+2026,115,CYQ,Chiayi County,嘉義縣,County,99.04,0.96,22.1,True
+2019,108,PIF,Pingtung County,屏東縣,County,98.42,1.58,19.9,False
+2020,109,PIF,Pingtung County,屏東縣,County,98.56,1.44,19.9,False
+2021,110,PIF,Pingtung County,屏東縣,County,98.7,1.3,19.9,False
+2022,111,PIF,Pingtung County,屏東縣,County,98.84,1.16,19.9,False
+2023,112,PIF,Pingtung County,屏東縣,County,98.99,1.01,19.9,False
+2024,113,PIF,Pingtung County,屏東縣,County,99.13,0.87,19.9,False
+2025,114,PIF,Pingtung County,屏東縣,County,99.27,0.73,19.9,True
+2026,115,PIF,Pingtung County,屏東縣,County,99.41,0.59,19.9,True
+2019,108,HUA,Hualien County,花蓮縣,County,98.68,1.32,19.3,False
+2020,109,HUA,Hualien County,花蓮縣,County,98.8,1.2,19.3,False
+2021,110,HUA,Hualien County,花蓮縣,County,98.92,1.08,19.3,False
+2022,111,HUA,Hualien County,花蓮縣,County,99.04,0.96,19.3,False
+2023,112,HUA,Hualien County,花蓮縣,County,99.16,0.84,19.3,False
+2024,113,HUA,Hualien County,花蓮縣,County,99.28,0.72,19.3,False
+2025,114,HUA,Hualien County,花蓮縣,County,99.4,0.6,19.3,True
+2026,115,HUA,Hualien County,花蓮縣,County,99.52,0.48,19.3,True
+2019,108,TTT,Taitung County,臺東縣,County,98.15,1.85,19.1,False
+2020,109,TTT,Taitung County,臺東縣,County,98.31,1.69,19.1,False
+2021,110,TTT,Taitung County,臺東縣,County,98.48,1.52,19.1,False
+2022,111,TTT,Taitung County,臺東縣,County,98.64,1.36,19.1,False
+2023,112,TTT,Taitung County,臺東縣,County,98.8,1.2,19.1,False
+2024,113,TTT,Taitung County,臺東縣,County,98.97,1.03,19.1,False
+2025,114,TTT,Taitung County,臺東縣,County,99.13,0.87,19.1,True
+2026,115,TTT,Taitung County,臺東縣,County,99.29,0.71,19.1,True
+2019,108,PEN,Penghu County,澎湖縣,Offshore Island,98.54,1.46,18.5,False
+2020,109,PEN,Penghu County,澎湖縣,Offshore Island,98.67,1.33,18.5,False
+2021,110,PEN,Penghu County,澎湖縣,Offshore Island,98.8,1.2,18.5,False
+2022,111,PEN,Penghu County,澎湖縣,Offshore Island,98.94,1.06,18.5,False
+2023,112,PEN,Penghu County,澎湖縣,Offshore Island,99.07,0.93,18.5,False
+2024,113,PEN,Penghu County,澎湖縣,Offshore Island,99.2,0.8,18.5,False
+2025,114,PEN,Penghu County,澎湖縣,Offshore Island,99.33,0.67,18.5,True
+2026,115,PEN,Penghu County,澎湖縣,Offshore Island,99.46,0.54,18.5,True
+2019,108,KIN,Kinmen County,金門縣,Offshore Island,98.95,1.05,16.5,False
+2020,109,KIN,Kinmen County,金門縣,Offshore Island,99.05,0.95,16.5,False
+2021,110,KIN,Kinmen County,金門縣,Offshore Island,99.15,0.85,16.5,False
+2022,111,KIN,Kinmen County,金門縣,Offshore Island,99.25,0.75,16.5,False
+2023,112,KIN,Kinmen County,金門縣,Offshore Island,99.35,0.65,16.5,False
+2024,113,KIN,Kinmen County,金門縣,Offshore Island,99.45,0.55,16.5,False
+2025,114,KIN,Kinmen County,金門縣,Offshore Island,99.54,0.46,16.5,True
+2026,115,KIN,Kinmen County,金門縣,Offshore Island,99.64,0.36,16.5,True
+2019,108,LIE,Lienchiang County,連江縣,Offshore Island,99.18,0.82,15.0,False
+2020,109,LIE,Lienchiang County,連江縣,Offshore Island,99.26,0.74,15.0,False
+2021,110,LIE,Lienchiang County,連江縣,Offshore Island,99.34,0.66,15.0,False
+2022,111,LIE,Lienchiang County,連江縣,Offshore Island,99.42,0.58,15.0,False
+2023,112,LIE,Lienchiang County,連江縣,Offshore Island,99.5,0.5,15.0,False
+2024,113,LIE,Lienchiang County,連江縣,Offshore Island,99.58,0.42,15.0,False
+2025,114,LIE,Lienchiang County,連江縣,Offshore Island,99.66,0.34,15.0,True
+2026,115,LIE,Lienchiang County,連江縣,Offshore Island,99.74,0.26,15.0,True

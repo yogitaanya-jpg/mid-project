@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "title": "Taiwan Literacy Rate Forecasting (2019-2026)",
+    "historical_range": "2019-2024 (ROC 108-113)",
+    "forecast_range": "2025-2026 (ROC 114-115)",
+    "unit": "Percentage of population aged 15 and over (%)",
+    "source": "Ministry of the Interior, Republic of China (Taiwan)"
+  },
+  "model_performance_backtest": {
+    "asymptotic_logistic": {
+      "rmse": 0.007,
+      "mae": 0.007,
+      "r2_fit_overall": 0.8496,
+      "notes": "Optimal for demographic saturation; mathematically guarantees predictions never exceed 100%."
+    },
+    "linear_regression": {
+      "rmse": 0.0346,
+      "mae": 0.0335,
+      "r2_fit_overall": 0.8574,
+      "notes": "Standard benchmark, but lacks upper-bound asymptotic constraints."
+    },
+    "holt_exponential_smoothing": {
+      "rmse": 0.09,
+      "mae": 0.0885,
+      "r2_fit_overall": 1.0,
+      "notes": "Adapts dynamically to recent year-over-year momentum."
+    }
+  },
+  "timeline_data": [
+    {
+      "year": 2019,
+      "roc_year": 108,
+      "is_forecast": false,
+      "actual_overall": 99.08,
+      "pred_asymptotic": 99.031,
+      "pred_linear": 99.036,
+      "pred_holt": 99.08,
+      "male_literacy": 99.72,
+      "female_literacy": 98.46,
+      "gender_gap": 1.26
+    },
+    {
+      "year": 2020,
+      "roc_year": 109,
+      "is_forecast": false,
+      "actual_overall": 99.03,
+      "pred_asymptotic": 99.098,
+      "pred_linear": 99.095,
+      "pred_holt": 99.03,
+      "male_literacy": 99.7,
+      "female_literacy": 98.39,
+      "gender_gap": 1.31
+    },
+    {
+      "year": 2021,
+      "roc_year": 110,
+      "is_forecast": false,
+      "actual_overall": 99.13,
+      "pred_asymptotic": 99.16,
+      "pred_linear": 99.154,
+      "pred_holt": 99.13,
+      "male_literacy": 99.73,
+      "female_literacy": 98.56,
+      "gender_gap": 1.17
+    },
+    {
+      "year": 2022,
+      "roc_year": 111,
+      "is_forecast": false,
+      "actual_overall": 99.27,
+      "pred_asymptotic": 99.218,
+      "pred_linear": 99.213,
+      "pred_holt": 99.27,
+      "male_literacy": 99.77,
+      "female_literacy": 98.79,
+      "gender_gap": 0.98
+    },
+    {
+      "year": 2023,
+      "roc_year": 112,
+      "is_forecast": false,
+      "actual_overall": 99.27,
+      "pred_asymptotic": 99.272,
+      "pred_linear": 99.272,
+      "pred_holt": 99.27,
+      "male_literacy": 99.82,
+      "female_literacy": 98.75,
+      "gender_gap": 1.07
+    },
+    {
+      "year": 2024,
+      "roc_year": 113,
+      "is_forecast": false,
+      "actual_overall": 99.32,
+      "pred_asymptotic": 99.322,
+      "pred_linear": 99.33,
+      "pred_holt": 99.32,
+      "male_literacy": 99.86,
+      "female_literacy": 98.81,
+      "gender_gap": 1.05
+    },
+    {
+      "year": 2025,
+      "roc_year": 114,
+      "is_forecast": true,
+      "actual_overall": null,
+      "pred_asymptotic": 99.369,
+      "pred_linear": 99.389,
+      "pred_holt": 99.313,
+      "male_literacy": 99.853,
+      "female_literacy": 98.908,
+      "gender_gap": 0.944
+    },
+    {
+      "year": 2026,
+      "roc_year": 115,
+      "is_forecast": true,
+      "actual_overall": null,
+      "pred_asymptotic": 99.412,
+      "pred_linear": 99.448,
+      "pred_holt": 99.341,
+      "male_literacy": 99.87,
+      "female_literacy": 98.975,
+      "gender_gap": 0.888
+    }
+  ]
+}
